@@ -72,36 +72,6 @@ const Header = () => {
     }, []);
     return (
         <div className='relative overflow-hidden pb-3'>
-            {/* <Image className="h-full absolute top-0 left-0 z-[-2]" src={image1} alt="loading ..."/> */}
-
-            <svg className="w-1/3 absolute top-0 left-0 z-[-2]" viewBox="0 0 901 915" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_f_303_335)">
-            <circle cx="71.3786" cy="85.1523" r="160.09" fill="#99E9FF"/>
-            </g>
-            <defs>
-            <filter id="filter0_f_303_335" x="-757.712" y="-743.938" width="1658.18" height="1658.18" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="334.5" result="effect1_foregroundBlur_303_335"/>
-            </filter>
-            </defs>
-            </svg>
-
-            <svg className="w-1/3 absolute top-0 right-0 z-[-2]" viewBox="0 0 866 850" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_f_303_334)">
-            <circle cx="766" cy="83.7904" r="136.645" fill="#6CDFFF"/>
-            </g>
-            <defs>
-            <filter id="filter0_f_303_334" x="0.354492" y="-681.855" width="1531.29" height="1531.29" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="314.5" result="effect1_foregroundBlur_303_334"/>
-            </filter>
-            </defs>
-            </svg>
-            
-
-
             <NavBar/>
             <HeroPage/>
 

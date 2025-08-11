@@ -93,11 +93,11 @@ const NavBar = () => {
       
 
     return (
-        <div className={` header ${scrolled ? "scrolled" : " "} z-[150] w-full header backgronsdvg   ${
+        <div className={` header ${scrolled ? "scrolled" : " "} z-[150] w-full header backgronsdvg bg-[#fff]   ${
             isVisible ? "translate-y-0 transition-transform duration-300 " : "-translate-y-full transition-transform duration-300 "
         }`}>
             
-            <header className='px-[24px]   flex  justify-between items-center py-[20px] sm:py-[24px] lg:py-[30px] relative  sm:overflow-hidden backgroundimage sm:px-[40px] md:px-[50px] lg:px-[70px] xl:px-[90px] 2xl:px-[100px] gap-[14px] md:gap-[16px] lg:gap-[18px] xl:gap-[20px] 2xl:gap-[22px]'>
+            <header className='px-[24px]   flex  justify-between items-center py-[20px] sm:py-[24px] lg:py-[30px] relative  sm:overflow-hidden backgroundimage sm:px-0 gap-[14px] md:gap-[16px] lg:gap-[18px] xl:gap-[20px] 2xl:gap-[22px] container mx-auto'>
             <dev className='linersext absolute bottom-0 left-0 w-full h-[2px] z-10'></dev>
             <Link onClick={(e) => handleScrollToTop(e, "")} href='/' className='cursor-pointer relative flex  items-center justify-start Froggo-Logo'>
                 <Image className='w-full h-[14px] sm:h-[15px] 2xl:h-[16.7px]' src={logo} alt=''/></Link>
