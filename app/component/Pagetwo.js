@@ -27,7 +27,7 @@ const Pagetwo = () => {
         isMobile: '(max-width: 767px)',
       },
       (context) => {
-        const { isDesktop, isMobile } = context.conditions;
+        const { isMobile } = context.conditions;
   
         // Skip all animations on mobile
         if (isMobile) return;

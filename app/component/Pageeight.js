@@ -1,7 +1,7 @@
 'use client';
 
 
-import React, { useEffect, useRef, useState  } from 'react';
+import React, { useEffect, useRef  } from 'react';
 // import Image from 'next/image';
 // import image9 from './image/image9.png';
 // import imagefromleft from './image/imagefromleft.png';

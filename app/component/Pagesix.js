@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -29,7 +29,7 @@ const Pagesix = () => {
           isMobile: '(max-width: 767px)',
         },
         (context) => {
-          const { isDesktop, isMobile } = context.conditions;
+          const { isMobile } = context.conditions;
 
           // Main wrapper animation
           gsap.fromTo(

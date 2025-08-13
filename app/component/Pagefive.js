@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import image2 from './image/image4 (2).png';

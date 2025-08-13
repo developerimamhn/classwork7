@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import Image from 'next/image';
@@ -24,7 +24,7 @@ const Pageone = () => {
           isMobile: '(max-width: 767px)',
         },
         (context) => {
-          const { isDesktop, isMobile } = context.conditions;
+          const { isMobile } = context.conditions;
     
           // Skip all animations on mobile
           if (isMobile) return;
