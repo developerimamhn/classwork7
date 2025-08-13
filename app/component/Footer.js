@@ -1,201 +1,103 @@
-'use client'
 
+import Logo2 from "./image/image1 (2).png";
+import Image from "next/image";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
-import logo from "./image/logo.png";
-
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
-    const [toggle, setToggle] = useState(false);
-    const menuRef = useRef(null); 
-    const menuButtonRef = useRef(null);
-    const [scrolled, setScrolled] = useState(false);
-  
-    const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        (!menuButtonRef.current || !menuButtonRef.current.contains(event.target))
-      ) {
-        setToggle(false);
-      }
-    };
-  
-    useEffect(() => {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
-  
-    const handleScroll = (e, sectionId) => {
-      e.preventDefault();
-      const section = document.getElementById(sectionId);
-      if (section) {
-        window.scrollTo({
-          top: section.offsetTop - 50,
-          behavior: "smooth",
-        });
-        setToggle(false);
-      }
-    };
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        if (window.scrollY > 50) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  
-    useEffect(() => {
-      // Example of animating elements when they come into view
-      gsap.fromTo('.feature', 
-        { opacity: 0, y: 50 }, 
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.3,
-          scrollTrigger: {
-            trigger: '.feature',
-            start: 'top 100%',
-            end: 'bottom top',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-  
-      // Example of animating the button with scale and opacity
-      gsap.fromTo('.buttonaudit-3', 
-        { opacity: 0, scale: 0.8 }, 
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: 'ease-in-out',
-          scrollTrigger: {
-            trigger: '.buttonaudit-3',
-            start: 'top 100%',
-            end: 'bottom top',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, []);
-  
-    const [isTranslated, setIsTranslated] = useState(false);
-  
-    const handleClick = () => {
-      setIsTranslated(true);
-      setTimeout(() => {
-        setIsTranslated(false);
-      }, 200);
-    };
-
-
-    const iconRefs = useRef([]);
-
-  useEffect(() => {
-    // GSAP entrance animation for icons
-    gsap.fromTo(
-      iconRefs.current,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-      }
-    );
-  }, []);
-
-  // Handle hover animation with GSAP
-  const handleMouseEnter = (index) => {
-    gsap.to(iconRefs.current[index], {
-      scale: 1.2,
-      rotate: 10,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
-  };
-
-  const handleMouseLeave = (index) => {
-    gsap.to(iconRefs.current[index], {
-      scale: 1,
-      rotate: 0,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
-  };
-
-  const socialLinks = [
-    { href: 'https://twitter.com', icon: 'twitter' },
-    { href: 'https://linkedin.com', icon: 'linkedin' },
-    { href: 'https://facebook.com', icon: 'facebook' },
-    { href: 'https://telegram.org', icon: 'telegram' },
-  ];
-  
-    return (
-        <div id='Support' className='px-[32px] sm:px-[36px] md:px-[40px] lg:px-[48px] xl:px-[64px] 2xl:px-[77px]'>
-            <div className='w-full '>
-                <div className='flex items-center sm:items-start justify-between sm:flex-row flex-col gap-[40px]  '>
-                    <div className='grid grid-cols-12 items-center justify-between gap-[36px] sm:gap-[40px] md:gap-[48px] lg:gap-[64px] xl:gap-[96px] 2xl:gap-[128px] h-full relative pb-[32px] sm:pb-[36px] md:pb-[40px] lg:pb-[48px] xl:pb-[64px] 2xl:pb-[77px] border-b-[1px] border-[#32343D]'>
-                      <div className='col-span-12 sm:col-span-5'>
-                        <Image className='sm:w-[50px] md:w-[60px] lg:w-[70px] xl:w-[90px] 2xl:w-[110px] w-[135px] mx-auto sm:mx-0' src={logo} alt="loading..."/>
-                        <p className='privacypolicy text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] mt-[13px] sm:mt-[14px] md:mt-[15px] lg:mt-[16px] xl:mt-[20px] 2xl:mt-[24px] md:pr-[20px] xl:pr-[30%] text-center sm:!text-left sm:px-0 px-[20%]'>Conflux Network: Building a multi-chain ecosystem to enable creators, communities, and markets to connect globally across borders and protocols.
-</p>
-                      </div>
-                      <div className='col-span-12 sm:col-span-7 grid grid-cols-2  sm:gap-0 justify-between items-center sm:items-start'>
-                        <div className='flex items-center flex-col gap-[14px] sm:gap-[15px] md:gap-[16px] lg:gap-[20px] xl:gap-[24px] 2xl:gap-[30px] justify-center relative'>
-                          <div className='h-full absolute left-0 top-0  w-[1px] z-[50] backgaeasfoter xl:block hidden'></div>
-                          <div className='flex items-start flex-col gap-[14px] sm:gap-[15px] md:gap-[16px] lg:gap-[20px] xl:gap-[24px] 2xl:gap-[30px] justify-center relative'>
-                          <a className='privacypolicy text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px] !text-[#FDFCFF] '>Categories</a>
-                            <ul className='flex justify-start flex-col gap-[11px] sm:gap-[12px] md:gap-[13px] lg:gap-[14px] xl:gap-[15px] 2xl:gap-[16px] footeritesm figtree text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px]'>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Developers</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Technology</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Grants</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Partners</a>
-                            </ul>
-                            </div>
-                        </div> 
-                        <div className='flex items-center sm:items-end flex-col gap-[14px] sm:gap-[15px] md:gap-[16px] lg:gap-[20px] xl:gap-[24px] 2xl:gap-[30px] justify-center relative'>
-                          <div className='h-full absolute left-0 top-0  w-[1px] z-[50] backgaeasfoter xl:block hidden'></div>
-                          <div className='flex items-start flex-col gap-[14px] sm:gap-[15px] md:gap-[16px] lg:gap-[20px] xl:gap-[24px] 2xl:gap-[30px] justify-center relative'>
-                          <a className='privacypolicy text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px] !text-[#FDFCFF] '>Quick Links</a>
-                            <ul className='flex justify-start flex-col gap-[11px] sm:gap-[12px] md:gap-[13px] lg:gap-[14px] xl:gap-[15px] 2xl:gap-[16px] footeritesm figtree text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px]'>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>About</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Team</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Careers</a>
-                              <a className='privacypolicy duration-300 text-[#B3BEBF] hover:text-[#00C8FF] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] cursor-pointer'>Ecosystem</a>
-                            </ul> 
-                            </div>
-                        </div> 
-                      </div>
-                    </div>
-                    
-                </div>
-                <div className='flex items-center sm:flex-row flex-col justify-between py-[13px] sm:py-[14px] md:py-[15px] lg:py-[16px] xl:py-[20px] 2xl:py-[24px]'>
-                  <h3 className='conflueiah text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px]'>Copyright © 2022 Conflux. All Rights Reserved</h3>
-                  <div className='flex items-center justify-between gap-[20px] sm:gap-[24px] md:gap-[32px] lg:gap-[36px] xl:gap-[40px] 2xl:gap-[48px]'>
-                    <a href='#' className='conflueiah text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px] cursor-pointer'>Privacy Policy</a>
-                    <a href='#' className='conflueiah text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[20px] cursor-pointer'>Terms of service</a>
-                  </div>
-                </div>
-            </div>
+  return (
+    <div>
+      <footer className="bg-[#263238] text-white py-12 px-6">
+      <div className=" grid gap-8 md:grid-cols-5 container mx-auto">
+       
+        <div className="col-span-2">
+          <div className="flex items-center gap-2 mb-4">
+            <Image src={Logo2} alt="Nexcent" className="w-[100px] sm:w-[133px]" />
+           
+          </div>
+          <p className=" ">
+            <p className="clientnone ">
+            Copyright © 2020 Landify UI Kit.
+          </p>
+          <p className="clientnone pt-[5.5px]">
+            All rights reserved
+          </p>
+          </p>
+         
+          <div className="flex gap-[11.5px] text-gray-300 text-lg pt-[27px]">
+            <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer w-[23px] hover:rotate-12 duration-300" viewBox="0 0 24 23" fill="none">
+              <path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M0.851562 11.7743C0.851562 5.62346 5.83782 0.637207 11.9887 0.637207C18.1395 0.637207 23.1258 5.62346 23.1258 11.7743C23.1258 17.9252 18.1395 22.9114 11.9887 22.9114C5.83782 22.9114 0.851562 17.9252 0.851562 11.7743Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9892 5.83453C10.376 5.83453 10.1736 5.84159 9.53998 5.87042C8.90763 5.89938 8.476 5.99949 8.09833 6.14638C7.70766 6.29809 7.37626 6.50103 7.04611 6.83132C6.7157 7.16147 6.51276 7.49287 6.36055 7.88341C6.21329 8.26121 6.11305 8.69296 6.08459 9.32506C6.05625 9.95865 6.04883 10.1612 6.04883 11.7744C6.04883 13.3876 6.05601 13.5894 6.08471 14.223C6.1138 14.8553 6.21391 15.2869 6.36067 15.6646C6.51251 16.0553 6.71545 16.3867 7.04573 16.7168C7.37577 17.0472 7.70716 17.2507 8.09758 17.4024C8.47551 17.5493 8.90726 17.6494 9.53948 17.6784C10.1731 17.7072 10.3754 17.7142 11.9884 17.7142C13.6017 17.7142 13.8036 17.7072 14.4371 17.6784C15.0695 17.6494 15.5016 17.5493 15.8795 17.4024C16.2701 17.2507 16.601 17.0472 16.931 16.7168C17.2614 16.3867 17.4644 16.0553 17.6166 15.6647C17.7626 15.2869 17.8628 14.8552 17.8925 14.2231C17.921 13.5895 17.9284 13.3876 17.9284 11.7744C17.9284 10.1612 17.921 9.95877 17.8925 9.32519C17.8628 8.69284 17.7626 8.26121 17.6166 7.88354C17.4644 7.49287 17.2614 7.16147 16.931 6.83132C16.6006 6.50091 16.2702 6.29797 15.8792 6.14638C15.5005 5.99949 15.0686 5.89938 14.4363 5.87042C13.8027 5.84159 13.601 5.83453 11.9873 5.83453H11.9892ZM11.4563 6.90493C11.6144 6.90468 11.7909 6.90493 11.9892 6.90493C13.5751 6.90493 13.7631 6.91062 14.3893 6.93908C14.9685 6.96556 15.2828 7.06233 15.4922 7.14364C15.7694 7.2513 15.967 7.37999 16.1748 7.58789C16.3827 7.79578 16.5114 7.99378 16.6193 8.27097C16.7006 8.4801 16.7975 8.79442 16.8238 9.37356C16.8523 9.99972 16.8585 10.1878 16.8585 11.773C16.8585 13.3582 16.8523 13.5463 16.8238 14.1725C16.7973 14.7516 16.7006 15.0659 16.6193 15.2751C16.5116 15.5522 16.3827 15.7496 16.1748 15.9574C15.9669 16.1653 15.7695 16.294 15.4922 16.4016C15.283 16.4833 14.9685 16.5798 14.3893 16.6063C13.7632 16.6348 13.5751 16.641 11.9892 16.641C10.4031 16.641 10.2151 16.6348 9.58896 16.6063C9.00982 16.5796 8.6955 16.4828 8.486 16.4015C8.20881 16.2939 8.01081 16.1652 7.80292 15.9573C7.59502 15.7494 7.46632 15.5519 7.35842 15.2746C7.27712 15.0654 7.18022 14.7511 7.15386 14.172C7.1254 13.5458 7.11971 13.3577 7.11971 11.7715C7.11971 10.1853 7.1254 9.99823 7.15386 9.37207C7.18035 8.79294 7.27712 8.47862 7.35842 8.26924C7.46608 7.99205 7.59502 7.79405 7.80292 7.58616C8.01081 7.37826 8.20881 7.24956 8.486 7.14166C8.69538 7.05998 9.00982 6.96346 9.58896 6.93685C10.1369 6.91211 10.3493 6.90468 11.4563 6.90344V6.90493ZM15.1598 7.89119C14.7663 7.89119 14.447 8.21009 14.447 8.60373C14.447 8.99724 14.7663 9.31651 15.1598 9.31651C15.5533 9.31651 15.8726 8.99724 15.8726 8.60373C15.8726 8.21021 15.5533 7.89119 15.1598 7.89119ZM11.9892 8.72401C10.3046 8.72401 8.93882 10.0898 8.93882 11.7744C8.93882 13.4589 10.3046 14.8241 11.9892 14.8241C13.6738 14.8241 15.0391 13.4589 15.0391 11.7744C15.0391 10.0898 13.6738 8.72401 11.9892 8.72401ZM11.9892 9.79442C13.0826 9.79442 13.9691 10.6808 13.9691 11.7744C13.9691 12.8678 13.0826 13.7543 11.9892 13.7543C10.8956 13.7543 10.0092 12.8678 10.0092 11.7744C10.0092 10.6808 10.8956 9.79442 11.9892 9.79442Z" fill="white"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer w-[23px] hover:rotate-12 duration-300" viewBox="0 0 23 23" fill="none">
+              <path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M0.262695 11.7743C0.262695 5.62346 5.24895 0.637207 11.3998 0.637207C17.5507 0.637207 22.5369 5.62346 22.5369 11.7743C22.5369 17.9252 17.5507 22.9114 11.3998 22.9114C5.24895 22.9114 0.262695 17.9252 0.262695 11.7743Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3395 11.7661C17.3395 12.1678 17.2987 12.5689 17.2183 12.9599C17.14 13.3417 17.024 13.7164 16.872 14.0747C16.7235 14.4266 16.5393 14.7658 16.3241 15.082C16.1121 15.3963 15.8679 15.6911 15.5996 15.9599C15.3307 16.2275 15.0349 16.471 14.7208 16.6839C14.4035 16.8977 14.0638 17.0816 13.7117 17.2308C13.3529 17.3819 12.9773 17.4978 12.5959 17.576C12.2044 17.6565 11.8018 17.6976 11.3995 17.6976C10.9969 17.6976 10.5943 17.6565 10.2034 17.576C9.82137 17.4978 9.44576 17.3819 9.08726 17.2308C8.73516 17.0816 8.39521 16.8977 8.07791 16.6839C7.76379 16.4711 7.46795 16.2275 7.19966 15.9599C6.93108 15.6911 6.68685 15.3963 6.47455 15.082C6.26049 14.7658 6.07601 14.4266 5.92694 14.0747C5.77494 13.7164 5.65865 13.3417 5.58004 12.9599C5.50058 12.5689 5.45996 12.1678 5.45996 11.7661C5.45996 11.3641 5.50055 10.9621 5.58007 10.5719C5.65867 10.1902 5.77496 9.81486 5.92696 9.45718C6.07603 9.105 6.26052 8.76557 6.47457 8.44928C6.68688 8.13476 6.93111 7.84048 7.19968 7.57142C7.46797 7.30379 7.76382 7.06082 8.07793 6.84823C8.39523 6.63361 8.73518 6.44972 9.08729 6.30026C9.44578 6.14875 9.82137 6.03263 10.2034 5.95502C10.5944 5.87509 10.9969 5.83453 11.3995 5.83453C11.8018 5.83453 12.2044 5.87509 12.5959 5.95502C12.9773 6.03265 13.3529 6.14878 13.7117 6.30026C14.0638 6.4497 14.4035 6.63361 14.7208 6.84823C15.0349 7.06082 15.3308 7.30379 15.5996 7.57142C15.8679 7.84048 16.1121 8.13476 16.3241 8.44928C16.5393 8.76557 16.7235 9.10503 16.872 9.45718C17.024 9.81486 17.14 10.1902 17.2183 10.5719C17.2987 10.9621 17.3395 11.3641 17.3395 11.7661ZM9.23515 7.18448C7.82059 7.8515 6.76484 9.15307 6.43563 10.7217C6.56936 10.7229 8.6832 10.7495 11.1187 10.1033C10.2407 8.54571 9.30274 7.27458 9.23515 7.18448ZM11.539 10.8833C8.92713 11.6641 6.42084 11.6079 6.33094 11.6045C6.32947 11.6589 6.32687 11.7116 6.32687 11.7661C6.32687 13.0674 6.81849 14.2537 7.62656 15.1507C7.62481 15.148 9.01298 12.6888 11.7504 11.8049C11.8165 11.7829 11.8838 11.7632 11.9505 11.7441C11.8232 11.4562 11.6843 11.1677 11.539 10.8833ZM14.7495 7.96445C13.8564 7.1781 12.6838 6.70111 11.3995 6.70111C10.9873 6.70111 10.5873 6.75093 10.2042 6.84303C10.2802 6.94499 11.233 8.20717 12.1005 9.79777C14.0145 9.08125 14.737 7.98298 14.7495 7.96445ZM12.2963 12.5834C12.285 12.5871 12.2737 12.5904 12.2627 12.5944C9.26975 13.6363 8.29238 15.7359 8.2818 15.7589C9.14296 16.4276 10.2231 16.8311 11.3995 16.8311C12.102 16.8311 12.7711 16.6882 13.3799 16.4296C13.3048 15.9871 13.0101 14.4359 12.2963 12.5834ZM14.2341 15.9668C15.3731 15.1993 16.182 13.9806 16.4076 12.5689C16.3032 12.5353 14.884 12.0867 13.2467 12.3488C13.9121 14.1746 14.1824 15.6616 14.2341 15.9668ZM12.4909 10.5525C12.6087 10.7941 12.7227 11.04 12.828 11.287C12.8654 11.3757 12.9019 11.4626 12.9376 11.5494C14.6802 11.3305 16.3969 11.6989 16.4703 11.7139C16.4587 10.5132 16.0286 9.41112 15.3168 8.54834C15.3073 8.56192 14.4937 9.73578 12.4909 10.5525Z" fill="white"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer w-[23px] hover:rotate-12 duration-300" viewBox="0 0 23 23" fill="none">
+              <path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M0.673828 11.7743C0.673828 5.62346 5.66008 0.637207 11.8109 0.637207C17.9618 0.637207 22.9481 5.62346 22.9481 11.7743C22.9481 17.9252 17.9618 22.9114 11.8109 22.9114C5.66008 22.9114 0.673828 17.9252 0.673828 11.7743Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4782 9.68957L11.5015 10.0749L11.112 10.0278C9.69421 9.84687 8.45557 9.23342 7.4039 8.20315L6.88975 7.69195L6.75732 8.06945C6.47687 8.91097 6.65604 9.79968 7.24031 10.3974C7.55191 10.7277 7.4818 10.7749 6.94428 10.5783C6.75732 10.5154 6.59372 10.4682 6.57814 10.4918C6.52361 10.5468 6.71057 11.2625 6.85859 11.5456C7.06113 11.9389 7.47401 12.3242 7.92584 12.5523L8.30756 12.7332L7.85573 12.7411C7.41948 12.7411 7.4039 12.7489 7.45064 12.9141C7.60645 13.4253 8.22187 13.968 8.90741 14.2039L9.3904 14.3691L8.96973 14.6207C8.34651 14.9825 7.61424 15.187 6.88196 15.2027C6.5314 15.2106 6.24316 15.242 6.24316 15.2656C6.24316 15.3443 7.19357 15.7847 7.74667 15.9577C9.40598 16.4689 11.3769 16.2487 12.857 15.3757C13.9087 14.7544 14.9604 13.5197 15.4512 12.3242C15.716 11.6872 15.9809 10.5232 15.9809 9.96484C15.9809 9.60306 16.0043 9.55588 16.4405 9.12332C16.6976 8.87165 16.9391 8.59638 16.9858 8.51774C17.0637 8.36831 17.0559 8.36831 16.6586 8.50201C15.9965 8.73795 15.903 8.70649 16.2302 8.35258C16.4717 8.10091 16.7599 7.64476 16.7599 7.51106C16.7599 7.48747 16.6431 7.52679 16.5106 7.59757C16.3704 7.67622 16.0588 7.79419 15.8251 7.86497L15.4044 7.99867L15.0227 7.73913C14.8124 7.59757 14.5163 7.44028 14.3605 7.39309C13.9632 7.28298 13.3556 7.29871 12.9972 7.42455C12.0235 7.77846 11.4081 8.69076 11.4782 9.68957Z" fill="white"/>
+            </svg>  
+            <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer w-[23px] hover:rotate-12 duration-300" viewBox="0 0 23 23" fill="none">
+              <path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M0.0859375 11.7743C0.0859375 5.62346 5.07219 0.637207 11.223 0.637207C17.3739 0.637207 22.3602 5.62346 22.3602 11.7743C22.3602 17.9252 17.3739 22.9114 11.223 22.9114C5.07219 22.9114 0.0859375 17.9252 0.0859375 11.7743Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8642 7.94565C16.3754 8.08591 16.7779 8.4992 16.9145 9.02404C17.1628 9.97525 17.1628 11.96 17.1628 11.96C17.1628 11.96 17.1628 13.9446 16.9145 14.8959C16.7779 15.4207 16.3754 15.834 15.8642 15.9743C14.9379 16.2292 11.223 16.2292 11.223 16.2292C11.223 16.2292 7.50813 16.2292 6.58172 15.9743C6.07056 15.834 5.66801 15.4207 5.53139 14.8959C5.2832 13.9446 5.2832 11.96 5.2832 11.96C5.2832 11.96 5.2832 9.97525 5.53139 9.02404C5.66801 8.4992 6.07056 8.08591 6.58172 7.94565C7.50813 7.69073 11.223 7.69073 11.223 7.69073C11.223 7.69073 14.9379 7.69073 15.8642 7.94565ZM10.1093 10.2894V14.0017L13.0792 12.1456L10.1093 10.2894Z" fill="white"/>
+            </svg>
+          </div>
         </div>
-    );
-};
 
-export default Footer;
+      
+        <div  className="col-span-1">
+          <h3 className="conpadname mb-4">Company</h3>
+          <ul className="flex itesm-start justify-end flex-col gap-[5.35] ssaedgoaedf">
+            <li>About us</li>
+            <li>Blog</li>
+            <li>Contact us</li>
+            <li>Pricing</li>
+            <li>Testimonials</li>
+          </ul>
+        </div>
+
+       
+        <div  className="col-span-1">
+          <h3 className="conpadname mb-4">Support</h3>
+          <ul className="flex itesm-start justify-end flex-col gap-[5.35] ssaedgoaedf">
+            <li>Help center</li>
+            <li>Terms of service</li>
+            <li>Legal</li>
+            <li>Privacy policy</li>
+            <li>Status</li>
+          </ul>
+        </div>
+
+        
+        <div  className="col-span-1">
+          <h3 className="coanewoaghdos mb-4">Stay up to date</h3>
+          <form className="flex items-center bg-gray-600 rounded-lg overflow-hidden p-0 ">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="w-full px-[8px] py-[6px] conainerfas outline-none border-none "
+            />
+            <button
+              type="submit"
+              className="px-4 py-0 text-gray-300 hover:text-white"
+            > 
+             <svg xmlns="http://www.w3.org/2000/svg" className="w-[12px]" viewBox="0 0 14 13" fill="none">
+            <g clip-path="url(#clip0_47_137)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4608 0.76669C12.6026 0.908499 12.6506 1.11901 12.5844 1.3083L8.93002 11.7493C8.8593 11.9514 8.67243 12.0898 8.45855 12.0985C8.24468 12.1072 8.04715 11.9845 7.96021 11.7889L5.95355 7.27392L1.43857 5.26726C1.24297 5.18032 1.12025 4.98279 1.12898 4.76892C1.1377 4.55505 1.2761 4.36817 1.47813 4.29746L11.9192 0.643093C12.1085 0.576842 12.319 0.62488 12.4608 0.76669ZM6.97174 6.99403L8.37953 10.1616L10.8432 3.1226L6.97174 6.99403ZM10.1049 2.38431L3.06592 4.84794L6.23345 6.25573L10.1049 2.38431Z" fill="white"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_47_137">
+            <rect width="12.5293" height="12.5293" fill="white" transform="translate(0.606506 0.0917969)"/>
+            </clipPath>
+            </defs>
+            </svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </footer>
+    </div>
+  )
+}
+
+export default Footer

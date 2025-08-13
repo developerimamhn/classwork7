@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import NavBar from './NavBar';
 import HeroPage from './HeroPage';
-import image1 from './image/image1.png';
-import Image from 'next/image';
+// import image1 from './image/image1.png';
+// import Image from 'next/image';
 import { gsap } from "gsap";    
 
 
@@ -71,7 +71,7 @@ const Header = () => {
       );
     }, []);
     return (
-        <div className='relative overflow-hidden pb-3'>
+        <div className='relative overflow-hidden'>
             <NavBar/>
             <HeroPage/>
 

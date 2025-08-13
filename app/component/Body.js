@@ -7,7 +7,7 @@ import Pageeight from './Pageeight';
 import Footer from './Footer';
 import Pagefive from './Pagefive';
 import Pagesix from './Pagesix';
-import Pageseven from './Pageseven';
+// import Pageseven from './Pageseven';
 
 
 const Body = () => {
@@ -18,8 +18,9 @@ const Body = () => {
             <Pagethree/>
             <Pagefore/>
             <Pagefive/>
-            {/* <Pageeight/>
             <Pagesix/>
+            <Pageeight/>
+            {/* 
             <Pageseven/> */}
             <Footer/>
         </div>

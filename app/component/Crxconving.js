@@ -3,10 +3,10 @@
 import React, {useState} from 'react';
 import numbeingss1 from './image/numbeingss1.png';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 const Crxconving = () => {
-    const [activeLink, setActiveLink] = useState('/buy'); 
+    // const [activeLink, setActiveLink] = useState('/buy'); 
         const [isOpen, setIsOpen] = useState(false);
         const [selectedCrypto, setSelectedCrypto] = useState({
             image: numbeingss1,
@@ -32,9 +32,9 @@ const Crxconving = () => {
         
         // Default to "/buy"
     
-        const handleLinkClick = (href) => {
-            setActiveLink(href); 
-        };
+        // const handleLinkClick = (href) => {
+        //     setActiveLink(href); 
+        // };
     return (
         <div className='w-full'>
             <div className='w-full'>

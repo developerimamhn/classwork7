@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { LiaBarsSolid } from "react-icons/lia";
 import { VscChromeClose } from "react-icons/vsc";
 import logo from './image/logo.png';
-import righticon from './image/righticon.png';
+// import righticon from './image/righticon.png';
 
 
 const NavBar = () => {
